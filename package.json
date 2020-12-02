@@ -1,0 +1,23 @@
+{
+  "name": "helium",
+  "version": "1.0.0",
+  "description": "A simple Discord bot framework",
+  "main": "src/index.ts",
+  "repository": "https://github.com/DigitalCyan/helium",
+  "author": "DigitalCyan <marinoljubetic8@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node ./src",
+    "dev": "nodemon"
+  },
+  "dependencies": {
+    "@types/node": "^14.14.10",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

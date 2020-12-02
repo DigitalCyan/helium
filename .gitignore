@@ -1,0 +1,5 @@
+# Heaviest thing known to mankind
+node_modules
+
+# No leaking access tokens (this time)
+.env
