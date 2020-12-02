@@ -25,6 +25,7 @@ export default class BotMaster {
             return;
         }
 
+        /*
         BotMaster.instance.bot = new Client();
 
         BotMaster.instance.startupMaster = new StartupMaster();
@@ -39,5 +40,21 @@ export default class BotMaster {
         );
 
         BotMaster.instance.bot.login(botToken);
+        */
+
+       this.bot = new Client();
+
+       this.startupMaster = new StartupMaster();
+       await this.startupMaster.init();
+
+       this.commandMaster = new CommandMaster();
+       await this.commandMaster.init();
+
+       this.bot.addListener(
+           'message',
+           BotMaster.instance.commandMaster.handler
+       );
+
+       this.bot.login(botToken);
     };
 }

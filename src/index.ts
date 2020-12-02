@@ -3,4 +3,4 @@ config();
 
 import BotMaster from './Classes/BotMaster';
 
-new BotMaster().init(process.env.BOT_TOKEN);
+BotMaster.instance.init(process.env.BOT_TOKEN);
