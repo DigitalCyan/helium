@@ -25,23 +25,6 @@ export default class BotMaster {
             return;
         }
 
-        /*
-        BotMaster.instance.bot = new Client();
-
-        BotMaster.instance.startupMaster = new StartupMaster();
-        await BotMaster.instance.startupMaster.init();
-
-        BotMaster.instance.commandMaster = new CommandMaster();
-        await BotMaster.instance.commandMaster.init();
-
-        BotMaster.instance.bot.addListener(
-            'message',
-            BotMaster.instance.commandMaster.handler
-        );
-
-        BotMaster.instance.bot.login(botToken);
-        */
-
        this.bot = new Client();
 
        this.startupMaster = new StartupMaster();
