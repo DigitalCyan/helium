@@ -5,6 +5,7 @@ import { Message } from 'discord.js';
 import Command from '../Interfaces/Command';
 import CommandModule from '../Interfaces/CommandModule';
 import BotMaster from './BotMaster';
+import * as utils from './Utils'
 
 export default class CommandMaster {
 
@@ -22,9 +23,7 @@ export default class CommandMaster {
                 const commandModule = (module.default as CommandModule);
                 this.commandsMap.set(commandModule.command, commandModule)
             } catch {
-                console.log(
-                    `ERROR | Command module ${file} is invalid. Make sure you set an object that implements StartupModule interface as a default export.\n`
-                );
+                utils.logError(`Command module ${file} is invalid. Make sure you set an object that implements StartupModule interface as a default export.\n`);
             }
         }
     };

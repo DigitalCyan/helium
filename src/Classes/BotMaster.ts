@@ -1,7 +1,7 @@
 import { Client } from 'discord.js';
 import CommandMaster from './CommandMaster';
 import StartupMaster from './StartupMaster';
-
+import * as utils from './Utils';
 export default class BotMaster {
     private static _instance: BotMaster;
     public static get instance(): BotMaster {
@@ -20,24 +20,26 @@ export default class BotMaster {
     public commandMaster: CommandMaster;
 
     public init = async (botToken: string) => {
+        utils.logGood('Starting helios...')
         if (!botToken) {
             console.log('No bot token provided!');
             return;
         }
 
-       this.bot = new Client();
+        this.bot = new Client();
 
-       this.startupMaster = new StartupMaster();
-       await this.startupMaster.init();
+        this.startupMaster = new StartupMaster();
+        await this.startupMaster.init();
 
-       this.commandMaster = new CommandMaster();
-       await this.commandMaster.init();
+        this.commandMaster = new CommandMaster();
+        await this.commandMaster.init();
 
-       this.bot.addListener(
-           'message',
-           BotMaster.instance.commandMaster.handler
-       );
+        this.bot.addListener(
+            'message',
+            BotMaster.instance.commandMaster.handler
+        );
 
-       this.bot.login(botToken);
+        this.bot.login(botToken);
+        utils.logGood('Bot ready')
     };
 }
