@@ -20,9 +20,9 @@ export default class BotMaster {
     public commandMaster: CommandMaster;
 
     public init = async (botToken: string) => {
-        utils.logGood('Starting helios...')
+        utils.logGood('Starting Helium...');
         if (!botToken) {
-            console.log('No bot token provided!');
+            utils.logError('No bot token provided!');
             return;
         }
 
@@ -40,6 +40,6 @@ export default class BotMaster {
         );
 
         this.bot.login(botToken);
-        utils.logGood('Bot ready')
+        utils.logGood('Bot ready');
     };
 }
