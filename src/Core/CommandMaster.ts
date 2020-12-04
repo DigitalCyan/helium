@@ -40,6 +40,6 @@ export default class CommandMaster {
     };
 
     public isCommand = (messageText: string) => {
-        return messageText.search(BotMaster.instance.prefix) == 0;
+        return messageText.search(BotMaster.instance.config.prefix) == 0;
     };
 }
