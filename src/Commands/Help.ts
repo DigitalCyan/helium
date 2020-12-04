@@ -6,7 +6,7 @@ import CommandModule from '../Interfaces/CommandModule';
 const module: CommandModule = {
     command: 'help',
     description: 'A help command!',
-    usage: `${BotMaster.instance.prefix}help`,
+    usage: `${BotMaster.instance.config.prefix}help`,
     function: (msg: Message, cmd: Command) => {
         let message = '```\nHELP\n---------------\n';
         BotMaster.instance.commandMaster.commandsMap.forEach((value, key) => {

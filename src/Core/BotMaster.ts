@@ -15,7 +15,6 @@ export default class BotMaster {
     private _botToken: string;
 
     public bot: Client;
-    public prefix = '!';
 
     public startupMaster: StartupMaster;
     public commandMaster: CommandMaster;
