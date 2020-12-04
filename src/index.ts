@@ -1,3 +1,3 @@
-import BotMaster from './Classes/BotMaster';
+import BotMaster from './Core/BotMaster';
 
 BotMaster.instance.init();

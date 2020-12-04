@@ -1,8 +1,9 @@
 import { Message } from 'discord.js';
+import Command from './Command';
 
 export default interface CommandModule {
     command: string;
     description: string;
     usage: string;
-    function(msg: Message);
+    function(message: Message, command: Command);
 }

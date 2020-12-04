@@ -1,12 +1,13 @@
 import { Message } from 'discord.js';
-import BotMaster from '../Classes/BotMaster';
+import BotMaster from '../Core/BotMaster';
+import Command from '../Interfaces/Command';
 import CommandModule from '../Interfaces/CommandModule';
 
 const module: CommandModule = {
     command: 'example',
     description: 'Example command!',
     usage: `${BotMaster.instance.prefix}example`,
-    function: (msg: Message) => {
+    function: (msg: Message, cmd: Command) => {
         msg.channel.send(
             'Hello! This is an example command! Please dont forget to remove it!'
         );
