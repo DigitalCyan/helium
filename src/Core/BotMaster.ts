@@ -38,10 +38,7 @@ export default class BotMaster {
         this.commandMaster = new CommandMaster();
         await this.commandMaster.init();
 
-        this.bot.addListener(
-            'message',
-            this.commandMaster.handler
-        );
+        this.bot.addListener('message', this.commandMaster.handler);
 
         this.bot.login(this.config.token);
         utils.logGood('Bot ready');

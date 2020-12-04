@@ -1,4 +1,4 @@
 export default interface Config {
-    prefix: string,
-    token: string
+    prefix: string;
+    token: string;
 }

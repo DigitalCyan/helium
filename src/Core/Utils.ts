@@ -33,14 +33,16 @@ export const readConfig = (): Config | null => {
 export const parseCommand = (messageText: String): Command => {
     messageText = messageText.substr(BotMaster.instance.prefix.length);
     const args: Array<string> = [];
+    const messageChars = messageText.split('');
+
     let inQuotes = false;
     let arg = '';
-    const messageChars = messageText.split('');
+
     messageChars.forEach((char, index) => {
         if (char != '"') {
             arg += char;
         }
-        
+
         if (char == '"') {
             inQuotes = !inQuotes;
         }
