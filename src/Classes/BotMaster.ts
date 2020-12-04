@@ -1,4 +1,5 @@
 import { Client } from 'discord.js';
+import Config from '../Interfaces/Config';
 import CommandMaster from './CommandMaster';
 import StartupMaster from './StartupMaster';
 import * as utils from './Utils';
@@ -18,10 +19,13 @@ export default class BotMaster {
 
     public startupMaster: StartupMaster;
     public commandMaster: CommandMaster;
+    public config: Config | null;
 
-    public init = async (botToken: string) => {
+    public init = async () => {
         utils.logGood('Starting Helium...');
-        if (!botToken) {
+        this.config = utils.readConfig();
+
+        if (!this.config || !this.config.token) {
             utils.logError('No bot token provided!');
             return;
         }
@@ -36,10 +40,10 @@ export default class BotMaster {
 
         this.bot.addListener(
             'message',
-            BotMaster.instance.commandMaster.handler
+            this.commandMaster.handler
         );
 
-        this.bot.login(botToken);
+        this.bot.login(this.config.token);
         utils.logGood('Bot ready');
     };
 }
