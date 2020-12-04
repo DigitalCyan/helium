@@ -39,17 +39,15 @@ export const parseCommand = (messageText: String): Command => {
     let arg = '';
 
     messageChars.forEach((char, index) => {
-        if (char != '"') {
+        if (char != ' ' && char != '"') {
             arg += char;
         }
-
         if (char == '"') {
             inQuotes = !inQuotes;
         }
-
-        if ((char == ' ' && !inQuotes) || index == messageChars.length - 1) {
+        if ((char == ' ' && !inQuotes) || index == messageChars.length - 1){
             args.push(arg);
-            arg = '';
+            arg = ''
         }
     });
 
