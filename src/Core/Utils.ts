@@ -31,7 +31,7 @@ export const readConfig = (): Config | null => {
 };
 
 export const parseCommand = (messageText: String): Command => {
-    messageText = messageText.substr(BotMaster.instance.prefix.length);
+    messageText = messageText.substr(BotMaster.instance.config.prefix.length);
     const args: Array<string> = [];
     const messageChars = messageText.split('');
 
