@@ -17,19 +17,20 @@ cd helium
 yarn install
 ```
 
-4. Create a `.env` file:
+4. Make sure to set up your `config.json` as this is where your key and prefix go. Use `config.example.json` as a blueprint. For example:
 ```
-touch .env
+{
+    "token": "YourSuperSecretBotToken",
+    "prefix": "?"
+}
 ```
 
-5. Set your environment variables in the `.env` file. (Check `.env.example` to see how it's done)
-
-6. Run the dev script:
+5. Run the dev script:
 ```
 yarn dev
 ```
 
-7. Go to the discord server and send your bot a command!
+6. Go to the discord server and send your bot a command!
 
 # Features and structure
 ## Command modules
@@ -57,10 +58,12 @@ const module: CommandModule = {
 export default module;
 ```
 
+As mentioned before there is a built in help command that will generate output based on the commands you've added. It utilizes the fact that every command you write implements `CommandModule` interface to generate the said output.
+
 ## Startup modules
 `src/Startup`
 
-This is where you add your startup modules. Tkey should be a default export of an object that implements the `StartupModule` interface. They are executed before the bot goes online.
+This is where you add your startup modules. They should be a default export of an object that implements the `StartupModule` interface. They are executed before the bot goes online.
 
 Example from `src/Startup/Example.ts`
 ```ts
