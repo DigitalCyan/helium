@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import Config from '../Interfaces/Config';
 import BotMaster from './BotMaster';
 import Command from '../Interfaces/Command';
+import { Channel } from 'discord.js';
 
 export const logError = (error: string) => {
     console.log(chalk.red(`ERROR | ${error}`));
@@ -29,6 +30,12 @@ export const readConfig = (): Config | null => {
     }
     return config;
 };
+
+export const showUsage = (ch: Channel, cmd: string) => {
+    if(ch.isText()){
+        ch.send(`Incorrect usage!\n\`Example: ${BotMaster.instance.commandMaster.commandsMap.get(cmd).usage}\``);
+    }
+}
 
 export const parseCommand = (messageText: String): Command => {
     messageText = messageText.substr(BotMaster.instance.config.prefix.length);
