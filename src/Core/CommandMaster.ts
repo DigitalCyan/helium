@@ -34,6 +34,7 @@ export default class CommandMaster {
         }
 
         const cmd: Command = utils.parseCommand(msg.content);
+        
         if (this.commandsMap.has(cmd.command)) {
             this.commandsMap.get(cmd.command).function(msg, cmd);
         }
