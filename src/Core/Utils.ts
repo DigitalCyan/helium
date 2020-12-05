@@ -39,11 +39,11 @@ export const parseCommand = (messageText: String): Command => {
     let arg = '';
 
     messageChars.forEach((char, index) => {
-        if (char != ' ' && char != '"') {
-            arg += char;
-        }
         if (char == '"') {
             inQuotes = !inQuotes;
+        }
+        if ((char != ' ' || inQuotes) && char != '"') {
+            arg += char;
         }
         if ((char == ' ' && !inQuotes) || index == messageChars.length - 1){
             args.push(arg);
