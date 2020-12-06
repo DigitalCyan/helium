@@ -20,11 +20,11 @@ export default class BotMaster {
     public commandMaster: CommandMaster;
     public config: Config | null;
 
-    public init = async () => {
+    public init = async (botToken: string) => {
         utils.logGood('Starting Helium...');
         this.config = utils.readConfig();
 
-        if (!this.config || !this.config.token) {
+        if (!this.config || !process.env.BOT_TOKEN) {
             utils.logError('No bot token provided!');
             return;
         }
@@ -39,7 +39,7 @@ export default class BotMaster {
 
         this.bot.addListener('message', this.commandMaster.handler);
 
-        this.bot.login(this.config.token);
+        this.bot.login(botToken);
         utils.logGood('Bot ready');
     };
 }
