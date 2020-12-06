@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "repository": "https://github.com/DigitalCyan/helium",
   "author": "DigitalCyan <marinoljubetic8@gmail.com>",
-  "license": "MIT",
+  "license": "SEE IN LICENSE",
   "scripts": {
     "start": "ts-node ./src",
     "dev": "nodemon"
