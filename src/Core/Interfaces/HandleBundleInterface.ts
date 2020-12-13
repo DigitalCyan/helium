@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
+import CommandInterface from './CommandInterface';
 
 export default interface HandleBundleInterface {
     message: Message;
-    command: string;
-    arguments: string[];
+    command: CommandInterface;
 }

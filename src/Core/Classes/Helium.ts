@@ -4,6 +4,7 @@ import Logger from '../Helpers/Logger';
 
 import Registrator from './Registrator/Registrator';
 import CommandHandler from './CommandHandler/CommandHandler';
+import { Client } from 'discord.js';
 
 export default class Helium {
     //#region Singleton
@@ -16,8 +17,24 @@ export default class Helium {
     }
     //#endregion
 
+    private _client: Client;
+
+    public get client() {
+        return this._client;
+    }
+
     public async init() {
-        await Registrator.instance.init();
+        // TODO: Add a config loader
+        // TODO: Add a startup module loader
         await CommandHandler.instance.init();
+        await this.initClient();
+        console.log(CommandHandler.instance.commandMap)
+        Logger.instance.logGood('READY!')
+    }
+
+    private async initClient() {
+        this._client = new Client();
+        this._client.on('message', CommandHandler.instance.handler);
+        this._client.login(process.env.BOT_TOKEN);
     }
 }

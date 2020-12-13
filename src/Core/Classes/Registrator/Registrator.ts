@@ -40,6 +40,7 @@ export default class Registrator {
                 );
             }
         }
+        console.log(CommandHandler.instance.commandMap);
     }
 
     private isCommandModule(module: CommandModuleInterface): boolean {
