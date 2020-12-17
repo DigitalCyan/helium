@@ -3,3 +3,6 @@ node_modules
 
 # Keep your token safe
 .env
+
+# Ignore yarn error log
+yarn-error.log
