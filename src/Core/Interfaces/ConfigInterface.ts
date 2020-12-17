@@ -1,4 +1,5 @@
 export default interface ConfigInterface{
-    prefix: string
-    [key: string]: string
+    prefix: string;
+    commandPaths: string[];
+    startupPaths: string[];
 }

@@ -1,31 +1,19 @@
 import * as chalk from 'chalk';
-export default class Logger {
-    //#region Singleton
-    private static _instance: Logger;
-    public static get instance() {
-        if (!this._instance) {
-            this._instance = new Logger();
-        }
-        return this._instance;
-    }
-    //#endregion
-    
-    public log(message: string) {
-        console.log(message);
-    }
+export const message = (message: any) => {
+    console.log(message);
+};
 
-    public logGood(message: string){
-        console.log(chalk.green(message))
-    }
+export const good = (message: any) => {
+    console.log(chalk.green(message));
+};
 
-    public logWarning(message: string) {
-        console.log(chalk.yellow(message));
-    }
+export const warning = (message: any) => {
+    console.log(chalk.yellow(message));
+};
 
-    public logError(message: string, error?: string) {
-        console.log(chalk.red(message));
-        if(error){
-            console.log(chalk.red(error))
-        }
+export const error = (message: any, error?: string) => {
+    console.log(chalk.red(message));
+    if (error) {
+        console.log(chalk.red(error));
     }
-}
+};

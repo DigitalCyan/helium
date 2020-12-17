@@ -1,4 +1,4 @@
-import CommandInterface from '../Interfaces/CommandInterface';
+import CommandInterface from '../../Interfaces/CommandInterface';
 
 export default function parseMessageContent(messageContent: string): CommandInterface {
     const args: string[] = [];

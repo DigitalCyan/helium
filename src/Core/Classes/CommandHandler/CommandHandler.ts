@@ -1,9 +1,9 @@
 import { Message } from 'discord.js';
-import parseMessageContent from '../../Helpers/ParseMessageContent';
+import parseMessageContent from './ParseMessageContent';
 import CommandInterface from '../../Interfaces/CommandInterface';
 import CommandModuleInterface from '../../Interfaces/CommandModuleInterface';
 import HandleBundleInterface from '../../Interfaces/HandleBundleInterface';
-import Helium from '../Helium';
+import Helium from '../Helium/Helium';
 import Registrator from '../Registrator/Registrator';
 
 export default class CommandHandler {

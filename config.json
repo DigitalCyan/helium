@@ -1,3 +1,5 @@
 {
-    "prefix": "!"
+    "prefix": "!",
+    "commandPaths": ["./App/Commands"],
+    "startupPaths": ["./App/Startup"]
 }

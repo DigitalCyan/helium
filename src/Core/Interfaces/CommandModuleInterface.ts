@@ -1,6 +1,7 @@
 import HandleBundleInterface from './HandleBundleInterface';
-// TODO: Make sure to add: usage
 export default interface CommandModuleInterface {
     command: string;
+    usage: string;
+    description: string;
     handle(HandleBundleInterface);
 }

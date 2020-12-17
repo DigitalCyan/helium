@@ -1,7 +1,8 @@
-import { fetchModulePaths } from '../../Helpers/ModulePathFethcer';
-import Logger from '../../Helpers/Logger';
+import fetchCommandModulePaths from './FetchCommandModulePaths';
+import * as log from '../../Helpers/Logger';
 import CommandHandler from '../CommandHandler/CommandHandler';
 import CommandModuleInterface from '../../Interfaces/CommandModuleInterface';
+import Helium from '../Helium/Helium';
 
 export default class Registrator {
     //#region Singleton
@@ -20,27 +21,22 @@ export default class Registrator {
 
     private async registerCommandModules() {
         const commandModuleDirs = ['./App/Commands'];
-        const modulePaths = fetchModulePaths(commandModuleDirs);
+        const modulePaths = fetchCommandModulePaths(Helium.instance.config.commandPaths);
         for (const modulePath of modulePaths) {
             try {
-                console.log(modulePath);
                 const module = new (await import(modulePath)).default();
                 if (this.isCommandModule(module)) {
-                    CommandHandler.instance.commandMap.set(
-                        module.command,
-                        module
-                    );
-                }else{
-                    throw `Helium | Typeguard failiure. The module ${modulePath} does not implement CommandModuleInterface.`
+                    CommandHandler.instance.commandMap.set(module.command, module);
+                } else {
+                    throw `Helium | Typeguard failiure. The module ${modulePath} does not implement CommandModuleInterface.`;
                 }
             } catch (err) {
-                Logger.instance.logError(
+                log.error(
                     `Error registering ${modulePath}. Please make sure the class implements CommandModuleInterface and has no errors.`,
                     err
                 );
             }
         }
-        console.log(CommandHandler.instance.commandMap);
     }
 
     private isCommandModule(module: CommandModuleInterface): boolean {
