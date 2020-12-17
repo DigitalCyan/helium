@@ -1,8 +1,9 @@
 import * as path from 'path';
 import * as fs from 'fs';
+import configLoader from '../Helpers/ConfigLoader'
 import Logger from '../Helpers/Logger';
+import ConfigInterface from '../Interfaces/ConfigInterface'
 
-import Registrator from './Registrator/Registrator';
 import CommandHandler from './CommandHandler/CommandHandler';
 import { Client } from 'discord.js';
 
@@ -18,13 +19,15 @@ export default class Helium {
     //#endregion
 
     private _client: Client;
-
+    
     public get client() {
         return this._client;
     }
+    
+    public config: ConfigInterface;
 
     public async init() {
-        // TODO: Add a config loader
+        this.config = configLoader()
         // TODO: Add a startup module loader
         await CommandHandler.instance.init();
         await this.initClient();

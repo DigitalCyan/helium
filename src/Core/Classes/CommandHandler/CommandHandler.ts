@@ -24,12 +24,14 @@ export default class CommandHandler {
     }
 
     public async handler(message: Message) {
-        if(!message.content.startsWith(Helium.instance.config.prefix)){
+        const prefix = Helium.instance.config.prefix
+        if(!message.content.startsWith(prefix)){
             return;
         }
+        const messageContent = message.content.substr(prefix.length)
 
-
-        const command: CommandInterface = parseMessageContent(message.content);
+        const command: CommandInterface = parseMessageContent(messageContent);
+        
         if (CommandHandler.instance.commandMap.has(command.command)) {
             const handleBundle: HandleBundleInterface = {
                 message: message,
