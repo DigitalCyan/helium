@@ -20,12 +20,14 @@ export default class Registrator {
     }
 
     private async registerCommandModules() {
-        const commandModuleDirs = ['./App/Commands'];
         const modulePaths = fetchCommandModulePaths(Helium.instance.config.commandPaths);
         for (const modulePath of modulePaths) {
             try {
                 const module = new (await import(modulePath)).default();
                 if (this.isCommandModule(module)) {
+                    if (module.init) {
+                        module.init();
+                    }
                     CommandHandler.instance.commandMap.set(module.command, module);
                     //TODO: Init a module if a init function is provided!
                 } else {
@@ -41,6 +43,6 @@ export default class Registrator {
     }
 
     private isCommandModule(module: CommandModuleInterface): boolean {
-        return module.command && module.handle instanceof Function;
+        return module.command && module.description && module.usage && module.handle instanceof Function;
     }
 }
