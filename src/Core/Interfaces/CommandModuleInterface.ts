@@ -3,5 +3,6 @@ export default interface CommandModuleInterface {
     command: string;
     usage: string;
     description: string;
-    handle(HandleBundleInterface);
+    init?(): void;
+    handle(HandleBundleInterface): void;
 }

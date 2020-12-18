@@ -27,6 +27,7 @@ export default class Registrator {
                 const module = new (await import(modulePath)).default();
                 if (this.isCommandModule(module)) {
                     CommandHandler.instance.commandMap.set(module.command, module);
+                    //TODO: Init a module if a init function is provided!
                 } else {
                     throw `Helium | Typeguard failiure. The module ${modulePath} does not implement CommandModuleInterface.`;
                 }
