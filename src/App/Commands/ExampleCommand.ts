@@ -8,10 +8,6 @@ export default class Test implements CommandModuleInterface {
 
     private a = 5;
 
-    public init(){
-        console.log('Initilized ExampleCommand.ts')
-    }
-
     public handle(handleBundle: HandleBundleInterface) {
         handleBundle.message.channel.send(`Yes the bot is up and running! Now delete this command and do something more productive!`)
     }
