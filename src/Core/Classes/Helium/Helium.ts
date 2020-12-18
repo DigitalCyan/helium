@@ -1,9 +1,9 @@
 import configLoader from './ConfigLoader'
 import ConfigInterface from '../../Interfaces/ConfigInterface'
-
 import CommandHandler from '../CommandHandler/CommandHandler';
-import { Client } from 'discord.js';
 import StartupHandler from '../StartupFunctionLoader/StartupHandler';
+import { Client } from 'discord.js';
+import * as log from '../../Helpers/Logger'
 
 export default class Helium {
     //#region Singleton
@@ -28,6 +28,10 @@ export default class Helium {
     public config: ConfigInterface;
 
     public async init() {
+        if(!process.env.BOT_TOKEN){
+            log.error('No bot token provided in env variable BOT_TOKEN.')
+            return
+        }
         this.config = configLoader()
         await CommandHandler.instance.init();
         this.initClient();
