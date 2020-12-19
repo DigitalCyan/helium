@@ -1,8 +1,8 @@
-import fetchCommandModulePaths from './FetchCommandModulePaths';
 import * as log from '../../Helpers/Logger';
 import CommandHandler from '../CommandHandler/CommandHandler';
 import CommandModuleInterface from '../../Interfaces/CommandModuleInterface';
 import Helium from '../Helium/Helium';
+import * as fileUtils from '../../Helpers/FileUtils'
 
 export default class Registrator {
     //#region Singleton
@@ -18,9 +18,9 @@ export default class Registrator {
     public async init() {
         await this.registerCommandModules();
     }
-
+    //TODO: Implement FileUtils in to the registrator
     private async registerCommandModules() {
-        const modulePaths = fetchCommandModulePaths(Helium.instance.config.commandPaths);
+        const modulePaths = await fileUtils.getFiles(Helium.instance.config.commandPaths);
         for (const modulePath of modulePaths) {
             try {
                 const module = new (await import(modulePath)).default();
@@ -29,7 +29,6 @@ export default class Registrator {
                         module.init();
                     }
                     CommandHandler.instance.commandMap.set(module.command, module);
-                    //TODO: Init a module if a init function is provided!
                 } else {
                     throw `Helium | Typeguard failiure. The module ${modulePath} does not implement CommandModuleInterface.`;
                 }

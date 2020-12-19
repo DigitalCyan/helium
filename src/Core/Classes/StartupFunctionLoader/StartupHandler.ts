@@ -1,5 +1,5 @@
 import Helium from '../Helium/Helium';
-import executeStartupFunctions from './ExecuteStartupFunctions';
+import * as fileFetching from '../../Helpers/FileUtils';
 
 import * as log from '../../Helpers/Logger';
 
@@ -14,7 +14,16 @@ export default class StartupHandler {
     }
     //#endregion
 
-    public init() {
-        executeStartupFunctions(Helium.instance.config.startupPaths);
+    public async init() {
+        const paths = Helium.instance.config.startupPaths;
+        const files = await fileFetching.getFiles(paths);
+        for (const file of files) {
+            try {
+                const module = new (await import(file)).default();
+                module.handle();
+            } catch {
+                log.error(`The module does not have a consturctor or it does not implement StartupModuleInterface.`)
+            }
+        }
     }
 }

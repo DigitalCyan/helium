@@ -1,6 +1,7 @@
-import { Message } from 'discord.js';
-import Helium from '../../Core/Classes/Helium/Helium';
+import StartupModuleInterface from '../../Core/Interfaces/StartupModuleInterface';
 
-export default () => {
-    console.log("This is a startup file that was designed to annoy you till you study it and remove it.");
-};
+export default class ExampleStartup implements StartupModuleInterface {
+    public handle() {
+        console.log('This is a startup file that was designed to annoy you till you study it and remove it.');
+    }
+}
