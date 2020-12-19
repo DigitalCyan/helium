@@ -11,14 +11,16 @@ export default (): ConfigInterface => {
 
     if (config.prefix && config.commandPaths && config.startupPaths) {
         return config;
-    }else{
-        logger.warning("Could not set up the configuration. The config file (config.json) does not implement the interface correctly or has an error. Using a default config.")
+    } else {
+        logger.warning(
+            'Could not set up the configuration. The config file (config.json) does not implement the interface correctly or has an error. Using a default config.'
+        );
     }
 
     const defConfig: ConfigInterface = {
-        prefix: "!",
+        prefix: '!',
         commandPaths: ['./App/Commands'],
-        startupPaths: ['./App/Startup']
-    }
+        startupPaths: ['./App/Startup'],
+    };
     return defConfig;
 };

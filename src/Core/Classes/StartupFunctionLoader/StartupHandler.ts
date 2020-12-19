@@ -1,7 +1,7 @@
 import Helium from '../Helium/Helium';
-import executeStartupFunctions from './ExecuteStartupFunctions'
+import executeStartupFunctions from './ExecuteStartupFunctions';
 
-import * as log from '../../Helpers/Logger'
+import * as log from '../../Helpers/Logger';
 
 export default class StartupHandler {
     //#region Singleton
@@ -13,8 +13,8 @@ export default class StartupHandler {
         return this._instance;
     }
     //#endregion
-    
-    public init(){
+
+    public init() {
         executeStartupFunctions(Helium.instance.config.startupPaths);
     }
 }

@@ -29,6 +29,7 @@ export default class Registrator {
                         module.init();
                     }
                     CommandHandler.instance.commandMap.set(module.command, module);
+                    //TODO: Init a module if a init function is provided!
                 } else {
                     throw `Helium | Typeguard failiure. The module ${modulePath} does not implement CommandModuleInterface.`;
                 }

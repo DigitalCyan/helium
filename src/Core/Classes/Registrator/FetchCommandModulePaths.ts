@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import * as log from '../../Helpers/Logger'
+import * as log from '../../Helpers/Logger';
 
 export default (directories: string[]): string[] => {
     const modules: string[] = new Array();
@@ -13,12 +13,10 @@ export default (directories: string[]): string[] => {
             continue;
         }
 
-        const files = fs
-            .readdirSync(fullDirPath)
-            .filter((f) => f.endsWith('.ts'));
+        const files = fs.readdirSync(fullDirPath).filter((f) => f.endsWith('.ts'));
 
         for (const file of files) {
-            modules.push(path.join(fullDirPath, file))
+            modules.push(path.join(fullDirPath, file));
         }
     }
 

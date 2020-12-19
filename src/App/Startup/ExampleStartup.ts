@@ -2,5 +2,9 @@ import { Message } from 'discord.js';
 import Helium from '../../Core/Classes/Helium/Helium';
 
 export default () => {
-    console.log('A startup example that will annoy you unless you remove it.')
+    Helium.instance.client.on('message', (message: Message) => {
+        if (message.author.id != Helium.instance.client.user.id) {
+            message.channel.send("This is a startup file that was designed to annoy you till you study it and remove it.");
+        }
+    });
 };

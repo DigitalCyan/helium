@@ -33,9 +33,9 @@ export default class Help implements CommandModuleInterface {
         const start = (this.page - 1) * this.perPage;
         const end = start + this.perPage;
 
-        let out = '\nDopBot commands:\n```\n';
+        let out = '\nAvailable commands:\n```\n';
         commands.slice(start, end + 1).forEach((v, k) => {
-            out += `${v.command} | ${v.description}\nUsage: ${Helium.instance.config.prefix}${v.usage}\n`;
+            out += `${v.command} | ${v.description}\nUsage: ${Helium.instance.config.prefix}${v.usage}\n\n`;
         });
         out += `\`\`\`\n Use \`${Helium.instance.config.prefix}help <number>\` to select a page.\nPage ${this.page} of ${this.lastPage}`;
 

@@ -20,11 +20,11 @@ export default async (directories: string[]) => {
         }
     }
 
-    for(const modulePath of modulePaths){
+    for (const modulePath of modulePaths) {
         try {
-            const module = await import(modulePath)
-            module.default()
-        }catch(err){
+            const module = await import(modulePath);
+            module.default();
+        } catch (err) {
             log.error(`The default export of ${modulePath} is likely not a function or it has an error.`, err);
         }
     }
