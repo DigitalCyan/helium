@@ -31,7 +31,7 @@ export default class Help implements CommandModuleInterface {
         });
 
         const start = (this.page - 1) * this.perPage;
-        const end = start + this.perPage;
+        const end = start + this.perPage - 1;
 
         let out = '\nAvailable commands:\n```\n';
         commands.slice(start, end + 1).forEach((v, k) => {
